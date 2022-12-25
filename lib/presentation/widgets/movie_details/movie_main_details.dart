@@ -18,7 +18,7 @@ class MovieMainDetails extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Text(
-            movieProvider.movie!.title!,
+            movieProvider.movie!.originalTitle!,
             style: context.textTheme.headline1,
           ),
         ),

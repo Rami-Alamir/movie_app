@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../widgets/movie_details/cast_list.dart';
 import '../../widgets/movie_details/movie_main_details.dart';
 import '../../widgets/shared/background.dart';
+import '../../widgets/shared/favorite_icon.dart';
 import '../../widgets/shared/primary_app_bar.dart';
 import '../../widgets/shared/retry.dart';
 import '../../../controllers/movie_details_provider.dart';
@@ -26,7 +27,6 @@ class _MovieDetailsState extends State<MovieDetails> {
     final MovieDetailsProvider movieProvider =
         Provider.of<MovieDetailsProvider>(context, listen: false);
     movieProvider.getMoviePageData(widget.id);
-    print(widget.id.toString());
     super.initState();
   }
 
@@ -42,13 +42,9 @@ class _MovieDetailsState extends State<MovieDetails> {
         action: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: const Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
+            child: movieProvider.requestStatus == RequestStatus.completed
+                ? FavoriteIcon(movie: movieProvider.movie!)
+                : Container(),
           )
         ],
       ),

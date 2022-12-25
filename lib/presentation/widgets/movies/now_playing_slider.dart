@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'now_playing_card.dart';
 import '../../../controllers/movies_provider.dart';
 import '../../../core/utils/size_config.dart';
+import '../../../core/enum/device_screen_type.dart';
 
 class NowPlayingSlider extends StatelessWidget {
   const NowPlayingSlider({Key? key}) : super(key: key);
@@ -14,15 +15,18 @@ class NowPlayingSlider extends StatelessWidget {
 
     return CarouselSlider(
       options: CarouselOptions(
-          height: SizeConfig.setWidgetHeight(566, 610, 610),
+          height: SizeConfig.setWidgetHeight(566, 670, 670),
           // enlargeCenterPage: true,
-          viewportFraction: .7,
+          viewportFraction:
+              SizeConfig.deviceScreenType == DeviceScreenType.mobile
+                  ? 0.7
+                  : 0.5,
           enlargeFactor: 0.2,
           enlargeCenterPage: true),
-      items: moviesProvider.nowPlaying.results!.map((item) {
+      items: moviesProvider.nowPlaying.movie!.map((item) {
         return Builder(
           builder: (BuildContext context) {
-            return NowPlayingCard(results: item);
+            return NowPlayingCard(movie: item);
           },
         );
       }).toList(),

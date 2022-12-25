@@ -44,43 +44,36 @@ class _MoviesState extends State<Movies> {
                         moviesProvider.getMoviesPageData(notify: true);
                       },
                     )
-                  : RefreshIndicator(
-                      color: context.primaryColor,
-                      backgroundColor: context.colorScheme.primary,
-                      onRefresh: () async {
-                        await moviesProvider.getMoviesPageData(notify: false);
-                      },
-                      child: ListView(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20, 20, 0, 30),
-                            child: Text('Now Playing',
-                                style: context.textTheme.headline1),
-                          ),
-                          const NowPlayingSlider(),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20, 0, 0, 20),
-                            child: Text('Upcoming',
-                                style: context.textTheme.headline1),
-                          ),
-                          MoviesList(
-                            isUpcoming: true,
-                            controller: moviesProvider.upcomingScrollController,
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20, 8, 0, 10),
-                            child: Text('Movies',
-                                style: context.textTheme.headline1),
-                          ),
-                          const GenresList(),
-                          MoviesList(
-                            controller: moviesProvider.moviesScrollController,
-                          ),
-                        ],
-                      ),
+                  : ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 20, 0, 30),
+                          child: Text('Now Playing',
+                              style: context.textTheme.headline1),
+                        ),
+                        const NowPlayingSlider(),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 0, 0, 20),
+                          child: Text('Upcoming',
+                              style: context.textTheme.headline1),
+                        ),
+                        MoviesList(
+                          isUpcoming: true,
+                          controller: moviesProvider.upcomingScrollController,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 8, 0, 10),
+                          child: Text('Movies',
+                              style: context.textTheme.headline1),
+                        ),
+                        const GenresList(),
+                        MoviesList(
+                          controller: moviesProvider.moviesScrollController,
+                        ),
+                      ],
                     ),
         ));
   }

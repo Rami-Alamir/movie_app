@@ -1,18 +1,18 @@
-import 'results.dart';
+import 'movie.dart';
 
 class Movies {
   int? page;
-  List<Results>? results;
+  List<Movie>? movie;
   int? totalPages;
 
-  Movies({this.page, this.results, this.totalPages});
+  Movies({this.page, this.movie, this.totalPages});
 
   Movies.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     if (json['results'] != null) {
-      results = <Results>[];
+      movie = <Movie>[];
       json['results'].forEach((v) {
-        results!.add(Results.fromJson(v));
+        movie!.add(Movie.fromJson(v));
       });
     }
     totalPages = json['total_pages'];

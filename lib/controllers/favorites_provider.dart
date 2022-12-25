@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import '../models/favorite.dart';
+import '../models/movie.dart';
 import '../core/enum/request_status.dart';
 
 class FavoritesProvider with ChangeNotifier {
   final RequestStatus _requestStatus = RequestStatus.isLoading;
   dynamic box;
-  List<Favorite> favoritesList = [];
+  List<Movie> favoritesList = [];
   RequestStatus get requestStatus => _requestStatus;
 
   Future<void> openHiveBox() async {
-    box = await Hive.openBox('MovieFavouriteBox4');
+    box = await Hive.openBox('MovieFavourites');
     getFavorites();
   }
 
@@ -18,13 +18,14 @@ class FavoritesProvider with ChangeNotifier {
   void getFavorites() async {
     List keys = box.keys.toList();
     for (int i = 0; i < (box.length ?? 0); i++) {
-      Favorite favorite = box.getAt(i)..index = keys[i];
+      Movie favorite = box.getAt(i)..index = keys[i];
       favoritesList.add(favorite);
     }
+    notifyListeners();
   }
 
   // add item to favourite list and save in local db
-  Future<void> addToFavorite(Favorite favorite) async {
+  Future<void> addToFavorite(Movie favorite) async {
     try {
       box.add(favorite);
       favoritesList.add(favorite);
@@ -33,7 +34,7 @@ class FavoritesProvider with ChangeNotifier {
   }
 
   // remove item from favourite list and local db
-  Future<void> removeFromFavorite(Favorite favorite) async {
+  Future<void> removeFromFavorite(Movie favorite) async {
     try {
       for (int i = 0; i < favoritesList.length; i++) {
         if (favoritesList[i].id == favorite.id) {

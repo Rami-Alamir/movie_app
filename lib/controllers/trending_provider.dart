@@ -24,9 +24,8 @@ class TrendingProvider with ChangeNotifier {
       if (_trendingPage == 1) {
         _trending = trendingData;
       } else {
-        _trending!.results = [_trending!.results, trendingData.results!]
-            .expand((x) => x!)
-            .toList();
+        _trending!.movie =
+            [_trending!.movie, trendingData.movie!].expand((x) => x!).toList();
       }
       _requestStatus = RequestStatus.completed;
     } catch (_) {
@@ -46,8 +45,6 @@ class TrendingProvider with ChangeNotifier {
             trendingScrollController.position.maxScrollExtent) &&
         ((_trending?.totalPages ?? 1) > _trendingPage) &&
         _requestStatus != RequestStatus.isLoading) {
-      print('_trendingPage $_trendingPage');
-
       _trendingPage += 1;
       try {
         await getTrendingMovies(page: _trendingPage);

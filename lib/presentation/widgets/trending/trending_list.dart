@@ -18,11 +18,11 @@ class TrendingList extends StatelessWidget {
         cacheExtent: 1000,
         scrollDirection: Axis.vertical,
         physics: const ScrollPhysics(),
-        itemCount: trendingProvider.trending!.results!.length,
+        itemCount: trendingProvider.trending!.movie!.length,
         padding: const EdgeInsets.only(right: 30, left: 30, bottom: 15, top: 0),
         itemBuilder: (BuildContext ctxt, int index) {
           return TrendingCard(
-            results: trendingProvider.trending!.results![index],
+            movie: trendingProvider.trending!.movie![index],
           );
         });
   }
