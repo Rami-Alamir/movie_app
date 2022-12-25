@@ -1,0 +1,55 @@
+name: movie_app
+description: A new Flutter Challenge.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.5
+  provider: ^6.0.5
+  get_it: ^7.2.0
+  lottie: ^2.1.0
+  carousel_slider: ^4.2.1
+  auto_size_text: ^3.0.0
+  shimmer: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+  flutter_native_splash: ^2.2.16
+
+flutter_native_splash:
+  branding: assets/images/logo.png
+  branding_mode: center
+  color: "3B4695"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/placeholder.png
+    - assets/images/logo.png
+    - assets/images/male.jpeg
+    - assets/images/female.jpeg
+    - assets/lottie/trending.json
+
+
+  fonts:
+    - family: Tajawal
+      fonts:
+        - asset: assets/fonts/tajawal/Tajawal-Light.ttf
+          weight: 100
+        - asset: assets/fonts/tajawal/Tajawal-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/tajawal/Tajawal-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/tajawal/Tajawal-Medium.ttf
+          weight: 500
+    - family: MovieIcons
+      fonts:
+        - asset: assets/icons/MovieIcons.ttf
