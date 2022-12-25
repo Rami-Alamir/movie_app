@@ -7,12 +7,12 @@ import '../repository/movies_repository.dart';
 
 class MovieDetailsProvider with ChangeNotifier {
   RequestStatus _requestStatus = RequestStatus.isLoading;
-  late Movie _movie;
-  late CastData _cast;
+  Movie? _movie;
+  CastData? _cast;
 
   RequestStatus get requestStatus => _requestStatus;
-  Movie get movie => _movie;
-  CastData get cast => _cast;
+  Movie? get movie => _movie;
+  CastData? get cast => _cast;
 
   //init Movie page
   Future<void> getMoviePageData(int movieId, {bool notify = false}) async {

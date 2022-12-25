@@ -41,7 +41,12 @@ class TrendingCard extends StatelessWidget {
                 ),
               ), //Padding
             ),
-            const Positioned(top: 20, right: 20, child: FavoriteIcon()),
+            Positioned(
+                top: 20,
+                right: 20,
+                child: FavoriteIcon(
+                  id: results.id!,
+                )),
             Positioned(
               top: 20,
               left: 20,

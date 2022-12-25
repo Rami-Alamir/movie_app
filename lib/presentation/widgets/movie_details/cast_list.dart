@@ -17,11 +17,11 @@ class CastList extends StatelessWidget {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           physics: const ScrollPhysics(),
-          itemCount: movieProvider.cast.cast?.length ?? 0,
+          itemCount: movieProvider.cast!.cast?.length ?? 0,
           padding: const EdgeInsets.only(right: 15, left: 15, bottom: 15),
           itemBuilder: (BuildContext ctxt, int index) {
             return CastCard(
-              cast: movieProvider.cast.cast![index],
+              cast: movieProvider.cast!.cast![index],
             );
           }),
     );

@@ -66,7 +66,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       children: [
                         FadeInImage.assetNetwork(
                             image: Constants.imagesPath +
-                                movieProvider.movie.posterPath!,
+                                movieProvider.movie!.posterPath!,
                             fit: BoxFit.fill,
                             placeholder: FixedAssets.placeHolder,
                             width: SizeConfig.screenWidth,

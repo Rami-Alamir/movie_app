@@ -40,7 +40,6 @@ class _AppState extends State<App> {
             index: currentTab,
             children: screens.map((e) => e).toList(),
           ),
-          // DropdownAlert()
         ],
       ),
       floatingActionButton: GestureDetector(
@@ -76,7 +75,7 @@ class _AppState extends State<App> {
                   isSelected: currentTab == 3),
               // Right Tab bar icons
               BottomNavItem(
-                  label: "Favourites",
+                  label: "Favorites",
                   icon: MovieIcons.favourites,
                   onPressed: () {
                     setState(() {

@@ -18,14 +18,14 @@ class MovieMainDetails extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Text(
-            movieProvider.movie.title!,
+            movieProvider.movie!.title!,
             style: context.textTheme.headline1,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Text(
-            movieProvider.movie.overview!,
+            movieProvider.movie!.overview!,
             style: context.textTheme.headline5,
           ),
         ),
@@ -39,14 +39,14 @@ class MovieMainDetails extends StatelessWidget {
                   Text('Rate: ', style: context.textTheme.headline6),
                   Text(
                       sl<FormatHelper>()
-                          .formatDecimal(movieProvider.movie.voteAverage!),
+                          .formatDecimal(movieProvider.movie!.voteAverage!),
                       style: context.textTheme.headline4),
                 ],
               ),
               Row(
                 children: [
                   Text('Reviews: ', style: context.textTheme.headline6),
-                  Text("${movieProvider.movie.voteCount!}",
+                  Text("${movieProvider.movie!.voteCount!}",
                       style: context.textTheme.headline4),
                 ],
               ),
