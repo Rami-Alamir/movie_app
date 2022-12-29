@@ -23,6 +23,8 @@ class FavoriteIcon extends StatelessWidget {
             ? favoritesProvider.removeFromFavorite(movie)
             : favoritesProvider.addToFavorite(movie);
       },
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
     );
   }
 }

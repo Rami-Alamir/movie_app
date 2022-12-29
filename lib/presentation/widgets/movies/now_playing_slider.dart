@@ -16,7 +16,6 @@ class NowPlayingSlider extends StatelessWidget {
     return CarouselSlider(
       options: CarouselOptions(
           height: SizeConfig.setWidgetHeight(566, 670, 670),
-          // enlargeCenterPage: true,
           viewportFraction:
               SizeConfig.deviceScreenType == DeviceScreenType.mobile
                   ? 0.7

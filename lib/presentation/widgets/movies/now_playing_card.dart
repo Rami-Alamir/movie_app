@@ -63,7 +63,7 @@ class NowPlayingCard extends StatelessWidget {
                 children: [
                   Text("${movie.voteCount!}",
                       style: context.textTheme.headline4),
-                  Text('Vote count', style: context.textTheme.headline6),
+                  Text('Reviews', style: context.textTheme.headline6),
                 ],
               ),
             ],

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../widgets/movies/logo.dart';
 import '../../widgets/movies/genres_list.dart';
 import '../../widgets/movies/movies_list.dart';
+import '../../widgets/movies/shimmer/movies_shimmer_loading.dart';
 import '../../widgets/movies/now_playing_slider.dart';
 import '../../widgets/shared/background.dart';
 import '../../widgets/shared/primary_app_bar.dart';
@@ -37,7 +38,7 @@ class _MoviesState extends State<Movies> {
         ),
         body: Background(
           child: moviesProvider.requestStatus == RequestStatus.isLoading
-              ? Container()
+              ? const MoviesShimmerLoading()
               : moviesProvider.requestStatus == RequestStatus.error
                   ? Retry(
                       onPressed: () {

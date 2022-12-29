@@ -12,9 +12,8 @@ extension NavigatorExtension on BuildContext {
     return Navigator.pushNamed(this, routName, arguments: arguments);
   }
 
-  Future pushReplacementNamed(
-      {required String routName, required bool arguments}) {
-    return Navigator.pushReplacementNamed(this, routName, arguments: arguments);
+  Future pushReplacementNamed({required String routName}) {
+    return Navigator.pushReplacementNamed(this, routName);
   }
 
   void pop() {

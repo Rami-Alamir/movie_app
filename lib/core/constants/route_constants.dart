@@ -1,4 +1,4 @@
-const String app = "/";
+const String app = "app";
 const String intro = "/Intro";
 const String trending = "/Trending";
 const String movieDetails = "/MovieDetails";

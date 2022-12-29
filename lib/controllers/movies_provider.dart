@@ -14,8 +14,6 @@ class MoviesProvider with ChangeNotifier {
   late GenresData _genresList;
   final ScrollController upcomingScrollController = ScrollController();
   final ScrollController moviesScrollController = ScrollController();
-  int _upcomingPage = 1;
-  int _moviesPage = 1;
   RequestStatus get requestStatus => _requestStatus;
   Movies get upcoming => _upcoming;
   Movies get nowPlaying => _nowPlaying;
@@ -42,7 +40,7 @@ class MoviesProvider with ChangeNotifier {
   //get all movies
   Future<void> _getMovies({bool notify = false}) async {
     try {
-      _movies = await sl<MoviesRepository>().getMovies(page: _moviesPage);
+      _movies = await sl<MoviesRepository>().getMovies(page: 1);
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }
@@ -82,7 +80,7 @@ class MoviesProvider with ChangeNotifier {
   //get upcoming movies
   Future<void> _getUpcoming({bool notify = false}) async {
     try {
-      _upcoming = await sl<MoviesRepository>().getUpcoming(page: _upcomingPage);
+      _upcoming = await sl<MoviesRepository>().getUpcoming(page: 1);
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }

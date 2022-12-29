@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/movie_details/cast_list.dart';
+import '../../widgets/movie_details/movie_details_shimmer.dart';
 import '../../widgets/movie_details/movie_main_details.dart';
 import '../../widgets/shared/background.dart';
 import '../../widgets/shared/favorite_icon.dart';
@@ -49,34 +50,34 @@ class _MovieDetailsState extends State<MovieDetails> {
         ],
       ),
       body: Background(
-          child: movieProvider.requestStatus == RequestStatus.isLoading
-              ? Container()
-              : movieProvider.requestStatus == RequestStatus.error
-                  ? Retry(
-                      onPressed: () {
-                        movieProvider.getMoviePageData(widget.id, notify: true);
-                      },
-                    )
-                  : ListView(
-                      padding: EdgeInsets.zero,
-                      children: [
-                        FadeInImage.assetNetwork(
-                            image: Constants.imagesPath +
-                                movieProvider.movie!.posterPath!,
-                            fit: BoxFit.fill,
-                            placeholder: FixedAssets.placeHolder,
-                            width: SizeConfig.screenWidth,
-                            height: SizeConfig.screenHeight! / 1.8),
-                        const MovieMainDetails(),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              15, 0, 0, 15),
-                          child:
-                              Text('Cast', style: context.textTheme.headline1),
-                        ),
-                        const CastList()
-                      ],
-                    )),
+        child: movieProvider.requestStatus == RequestStatus.isLoading
+            ? const MovieDetailsShimmerLoading()
+            : movieProvider.requestStatus == RequestStatus.error
+                ? Retry(
+                    onPressed: () {
+                      movieProvider.getMoviePageData(widget.id, notify: true);
+                    },
+                  )
+                : ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      FadeInImage.assetNetwork(
+                          image: Constants.imagesPath +
+                              movieProvider.movie!.posterPath!,
+                          fit: BoxFit.fill,
+                          placeholder: FixedAssets.placeHolder,
+                          width: SizeConfig.screenWidth,
+                          height: SizeConfig.screenHeight! / 1.8),
+                      const MovieMainDetails(),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 15),
+                        child: Text('Cast', style: context.textTheme.headline1),
+                      ),
+                      const CastList()
+                    ],
+                  ),
+      ),
     );
   }
 }

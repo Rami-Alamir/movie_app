@@ -36,7 +36,6 @@ class MovieDetailsProvider with ChangeNotifier {
   Future<void> _getMovieDetails(int id) async {
     try {
       _movie = await sl<MoviesRepository>().getMovieDetails(id: id);
-      _requestStatus = RequestStatus.completed;
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }
@@ -47,7 +46,6 @@ class MovieDetailsProvider with ChangeNotifier {
   Future<void> _getCast(int id) async {
     try {
       _cast = await sl<MoviesRepository>().getCastList(id: id);
-      _requestStatus = RequestStatus.completed;
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }

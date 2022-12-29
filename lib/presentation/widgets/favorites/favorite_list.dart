@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../presentation/widgets/favorites/favorite_card.dart';
 import '../../../controllers/favorites_provider.dart';
 import '../../../core/utils/size_config.dart';
+import '../../../core/enum/device_screen_type.dart';
 
 class FavoritesList extends StatelessWidget {
   const FavoritesList({Key? key}) : super(key: key);
@@ -17,7 +18,10 @@ class FavoritesList extends StatelessWidget {
       child: GridView.builder(
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: SizeConfig.screenWidth! ~/ 160,
+              crossAxisCount: SizeConfig.screenWidth! ~/
+                  (SizeConfig.deviceScreenType == DeviceScreenType.mobile
+                      ? 160
+                      : 200),
               crossAxisSpacing: 10,
               mainAxisSpacing: 5,
               mainAxisExtent: 260),
@@ -27,9 +31,13 @@ class FavoritesList extends StatelessWidget {
           itemBuilder: (BuildContext ctx, index) {
             return FavoriteCard(
               movie: favoritesProvider.favoritesList[index],
-              width:
-                  SizeConfig.screenWidth! / (SizeConfig.screenWidth! ~/ 160) -
-                      30,
+              width: SizeConfig.screenWidth! /
+                      (SizeConfig.screenWidth! ~/
+                          (SizeConfig.deviceScreenType ==
+                                  DeviceScreenType.mobile
+                              ? 160
+                              : 200)) -
+                  30,
             );
           }),
     );

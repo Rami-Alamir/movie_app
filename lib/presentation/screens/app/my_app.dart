@@ -6,7 +6,8 @@ import '../../../core/utils/app_theme.dart';
 
 //App Widget tree
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool introStatus;
+  const MyApp({Key? key, required this.introStatus}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
       theme: AppTheme.theme,
-      initialRoute: app,
+      initialRoute: introStatus ? intro : app,
     );
   }
 }

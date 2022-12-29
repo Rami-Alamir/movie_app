@@ -18,6 +18,7 @@ dependencies:
   shimmer: ^2.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -39,8 +40,12 @@ flutter:
     - assets/images/placeholder.png
     - assets/images/logo.png
     - assets/images/male.jpeg
+    - assets/images/favorite.png
     - assets/images/female.jpeg
     - assets/lottie/trending.json
+    - assets/lottie/trending2.json
+    - assets/lottie/favorite.json
+    - assets/lottie/movies.json
 
 
   fonts:
