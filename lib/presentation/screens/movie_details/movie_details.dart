@@ -2,32 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/movie_details/cast_list.dart';
 import '../../widgets/movie_details/movie_details_shimmer.dart';
+import '../../widgets/movie_details/movie_image.dart';
 import '../../widgets/movie_details/movie_main_details.dart';
 import '../../widgets/shared/background.dart';
 import '../../widgets/shared/favorite_icon.dart';
 import '../../widgets/shared/primary_app_bar.dart';
 import '../../widgets/shared/retry.dart';
 import '../../../controllers/movie_details_provider.dart';
-import '../../../core/constants/constants.dart';
-import '../../../core/constants/fixed_assets.dart';
 import '../../../core/enum/request_status.dart';
-import '../../../core/extensions/build_context_extensions.dart';
-import '../../../core/utils/size_config.dart';
 
 class MovieDetails extends StatefulWidget {
   final int id;
+
   const MovieDetails({Key? key, required this.id}) : super(key: key);
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
 }
 
-class _MovieDetailsState extends State<MovieDetails> {
+class _MovieDetailsState extends State<MovieDetails>
+    with SingleTickerProviderStateMixin {
+  late final Animation<Offset> animationOffset;
+  late final Animation<Offset> animationOffset2;
+  late final AnimationController animationController;
+
   @override
   void initState() {
     final MovieDetailsProvider movieProvider =
         Provider.of<MovieDetailsProvider>(context, listen: false);
     movieProvider.getMoviePageData(widget.id);
+
+    late final AnimationController animationController;
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1000));
+    animationOffset = Tween<Offset>(
+      end: Offset.zero,
+      begin: const Offset(
+        0.0,
+        -10.0,
+      ),
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.linearToEaseOut,
+    ));
+    animationOffset2 = Tween<Offset>(
+      end: Offset.zero,
+      begin: const Offset(-30.0, 0.0),
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.linearToEaseOut,
+    ));
+    animationController.forward();
     super.initState();
   }
 
@@ -61,20 +86,16 @@ class _MovieDetailsState extends State<MovieDetails> {
                 : ListView(
                     padding: EdgeInsets.zero,
                     children: [
-                      FadeInImage.assetNetwork(
-                          image: Constants.imagesPath +
-                              movieProvider.movie!.posterPath!,
-                          fit: BoxFit.fill,
-                          placeholder: FixedAssets.placeHolder,
-                          width: SizeConfig.screenWidth,
-                          height: SizeConfig.screenHeight! / 1.8),
-                      const MovieMainDetails(),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 15),
-                        child: Text('Cast', style: context.textTheme.headline1),
+                      MovieImage(
+                        imagePath: movieProvider.movie!.posterPath!,
+                        animationOffset: animationOffset,
                       ),
-                      const CastList()
+                      MovieMainDetails(
+                        animationOffset: animationOffset2,
+                      ),
+                      CastList(
+                        animationOffset: animationOffset2,
+                      )
                     ],
                   ),
       ),

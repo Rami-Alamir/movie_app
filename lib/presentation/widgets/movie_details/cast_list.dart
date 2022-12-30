@@ -4,7 +4,9 @@ import 'cast_card.dart';
 import '../../../controllers/movie_details_provider.dart';
 
 class CastList extends StatelessWidget {
-  const CastList({Key? key}) : super(key: key);
+  final Animation<Offset> animationOffset;
+
+  const CastList({Key? key, required this.animationOffset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,12 @@ class CastList extends StatelessWidget {
           itemCount: movieProvider.cast?.cast?.length ?? 0,
           padding: const EdgeInsets.only(right: 15, left: 15, bottom: 15),
           itemBuilder: (BuildContext ctxt, int index) {
-            return CastCard(
-              cast: movieProvider.cast!.cast![index],
+            return SlideTransition(
+              // textDirection: context.isAr ? TextDirection.ltr : TextDirection.rtl,
+              position: animationOffset,
+              child: CastCard(
+                cast: movieProvider.cast!.cast![index],
+              ),
             );
           }),
     );
