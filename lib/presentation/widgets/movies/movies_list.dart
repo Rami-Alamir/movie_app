@@ -27,8 +27,8 @@ class _MoviesListState extends State<MoviesList> {
   Widget build(BuildContext context) {
     final MoviesProvider moviesProvider = Provider.of<MoviesProvider>(context);
     final List<Movie> movies = widget.isUpcoming
-        ? moviesProvider.upcoming.movie!
-        : moviesProvider.movies.movie!;
+        ? moviesProvider.upcoming!.movie!
+        : moviesProvider.movies!.movie!;
     return SizedBox(
       height:
           SizeConfig.deviceScreenType == DeviceScreenType.mobile ? 355 : 375,

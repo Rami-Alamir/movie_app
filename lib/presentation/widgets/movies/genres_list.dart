@@ -10,7 +10,7 @@ class GenresList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MoviesProvider moviesProvider = Provider.of<MoviesProvider>(context);
-    final List<Genres> genres = moviesProvider.genresList.genres!;
+    final List<Genres> genres = moviesProvider.genresList!.genres!;
     return SizedBox(
       height: 65,
       child: ListView.builder(

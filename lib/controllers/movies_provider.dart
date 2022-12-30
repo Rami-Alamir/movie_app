@@ -8,17 +8,17 @@ import '../repository/movies_repository.dart';
 class MoviesProvider with ChangeNotifier {
   RequestStatus _requestStatus = RequestStatus.isLoading;
   int _selectedGenres = 0;
-  late Movies _movies;
-  late Movies _upcoming;
-  late Movies _nowPlaying;
-  late GenresData _genresList;
+  Movies? _movies;
+  Movies? _upcoming;
+  Movies? _nowPlaying;
+  GenresData? _genresList;
   final ScrollController upcomingScrollController = ScrollController();
   final ScrollController moviesScrollController = ScrollController();
   RequestStatus get requestStatus => _requestStatus;
-  Movies get upcoming => _upcoming;
-  Movies get nowPlaying => _nowPlaying;
-  Movies get movies => _movies;
-  GenresData get genresList => _genresList;
+  Movies? get upcoming => _upcoming;
+  Movies? get nowPlaying => _nowPlaying;
+  Movies? get movies => _movies;
+  GenresData? get genresList => _genresList;
   int get selectedGenres => _selectedGenres;
 
   //get movies by genres and update

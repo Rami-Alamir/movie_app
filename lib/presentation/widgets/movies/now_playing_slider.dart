@@ -22,7 +22,7 @@ class NowPlayingSlider extends StatelessWidget {
                   : 0.5,
           enlargeFactor: 0.2,
           enlargeCenterPage: true),
-      items: moviesProvider.nowPlaying.movie!.map((item) {
+      items: moviesProvider.nowPlaying!.movie!.map((item) {
         return Builder(
           builder: (BuildContext context) {
             return NowPlayingCard(movie: item);
