@@ -31,8 +31,6 @@ class _MovieDetailsState extends State<MovieDetails>
     final MovieDetailsProvider movieProvider =
         Provider.of<MovieDetailsProvider>(context, listen: false);
     movieProvider.getMoviePageData(widget.id);
-
-    late final AnimationController animationController;
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
     animationOffset = Tween<Offset>(

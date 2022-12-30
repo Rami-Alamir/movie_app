@@ -11,9 +11,12 @@ import 'presentation/screens/app/my_app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServiceLocator().init();
+
+  //init local db
   await Hive.initFlutter();
   Hive.registerAdapter((MovieAdapter()));
   await Hive.openBox('MovieFavourites');
+
   //get intro status
   final prefs = await SharedPreferences.getInstance();
   final bool introStatus = prefs.getBool('intro_status') ?? true;

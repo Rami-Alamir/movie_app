@@ -1,5 +1,4 @@
 import 'package:movie_app/models/cast.dart';
-
 import '../core/constants/constants.dart';
 import '../core/service/networking/api_base_helper.dart';
 import '../core/service/service_locator.dart';

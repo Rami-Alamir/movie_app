@@ -39,7 +39,6 @@ class MovieDetailsProvider with ChangeNotifier {
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }
-    notifyListeners();
   }
 
   //get cast
@@ -49,6 +48,5 @@ class MovieDetailsProvider with ChangeNotifier {
     } catch (_) {
       _requestStatus = RequestStatus.error;
     }
-    notifyListeners();
   }
 }

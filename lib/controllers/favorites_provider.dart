@@ -7,24 +7,24 @@ class FavoritesProvider with ChangeNotifier {
   final RequestStatus _requestStatus = RequestStatus.isLoading;
   dynamic box;
   List<Movie> favoritesList = [];
+
   RequestStatus get requestStatus => _requestStatus;
 
+  // open hive box
   Future<void> openHiveBox() async {
     box = await Hive.openBox('MovieFavourites');
     getFavorites();
   }
 
-  //get favorites
+  //get favorites list
   void getFavorites() async {
-    List keys = box.keys.toList();
     for (int i = 0; i < (box.length ?? 0); i++) {
-      Movie favorite = box.getAt(i)..index = keys[i];
-      favoritesList.add(favorite);
+      favoritesList.add(box.getAt(i));
     }
     notifyListeners();
   }
 
-  // add item to favourite list and save in local db
+  // add item to favourite list and save in local db (hive)
   Future<void> addToFavorite(Movie favorite) async {
     try {
       box.add(favorite);
@@ -33,12 +33,12 @@ class FavoritesProvider with ChangeNotifier {
     } catch (_) {}
   }
 
-  // remove item from favourite list and local db
+  // remove item from favourite list and local db (hive)
   Future<void> removeFromFavorite(Movie favorite) async {
     try {
       for (int i = 0; i < favoritesList.length; i++) {
         if (favoritesList[i].id == favorite.id) {
-          box?.delete(favoritesList[i].index);
+          favoritesList[i].delete();
           favoritesList.removeAt(i);
           notifyListeners();
           return;

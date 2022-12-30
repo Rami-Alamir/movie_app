@@ -17,21 +17,16 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int currentTab = 0; // to keep track of active tab index
+  int currentTab = 0;
+  // to keep track of active tab index
   final List<Widget> screens = [
     const Movies(),
     const Favorites(),
   ];
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     sl<SizeConfig>().init(context);
-
     return Scaffold(
       extendBody: true,
       body: Stack(

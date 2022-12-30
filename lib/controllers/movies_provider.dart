@@ -38,14 +38,11 @@ class MoviesProvider with ChangeNotifier {
   }
 
   //get all movies
-  Future<void> _getMovies({bool notify = false}) async {
+  Future<void> _getMovies() async {
     try {
       _movies = await sl<MoviesRepository>().getMovies(page: 1);
     } catch (_) {
       _requestStatus = RequestStatus.error;
-    }
-    if (notify) {
-      notifyListeners();
     }
   }
 
@@ -59,7 +56,7 @@ class MoviesProvider with ChangeNotifier {
     }
   }
 
-  //get movies by genres
+  //get genres list
   Future<void> _getGenresList() async {
     try {
       _genresList = await sl<MoviesRepository>().getGenresList();
@@ -78,14 +75,11 @@ class MoviesProvider with ChangeNotifier {
   }
 
   //get upcoming movies
-  Future<void> _getUpcoming({bool notify = false}) async {
+  Future<void> _getUpcoming() async {
     try {
       _upcoming = await sl<MoviesRepository>().getUpcoming(page: 1);
     } catch (_) {
       _requestStatus = RequestStatus.error;
-    }
-    if (notify) {
-      notifyListeners();
     }
   }
 
